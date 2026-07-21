@@ -1,0 +1,23 @@
+class Solution {
+    public int[][] floodFill(int[][] board, int sr, int sc, int color) {
+         int originalColor = board[sr][sc];
+         if(originalColor == color) {
+            return board;
+        }
+         dfs(board, sr, sc, originalColor, color);
+          return board;
+    }
+     private void dfs(int[][] board, int r, int c, int originalColor, int color) {
+        if (r < 0 || c < 0 || r >= board.length || c >= board[0].length) {
+            return;
+        }
+        if (board[r][c] != originalColor) {
+            return;
+        }
+        board[r][c] = color;
+        dfs(board, r + 1, c, originalColor, color);
+        dfs(board, r - 1, c, originalColor, color);
+        dfs(board, r, c + 1, originalColor, color);
+        dfs(board, r, c - 1, originalColor, color);
+    }
+}
